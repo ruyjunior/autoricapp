@@ -22,17 +22,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-blue-600/90 shadow-lg backdrop-blur' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-blue-100/90 shadow-lg backdrop-blur' : 'bg-transparent'}`}>
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link href={"/"} className="flex items-center gap-2">
           <Image
-            src="/images/logos/logo.jpg"
-            width={60}
-            height={60}
+            src="/images/logos/logo-icon.png"
+            width={300}
+            height={100}
             alt="Logo da Empresa"
-            className="rounded-md shadow border-2 border-blue-200"
+            className="rounded-md"
           />
-          <span className="hidden md:inline text-white font-extrabold text-2xl tracking-tight drop-shadow">AUTORIC</span>
         </Link>
 
         {/* Menu Desktop */}
