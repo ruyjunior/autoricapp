@@ -21,7 +21,7 @@ export const DocPDF = ({ data }: { data: InvoicePDF }) => {
       <PDF.Page size="A4" style={styles.page}>
         {/* Header */}
         <PDF.View style={styles.headerSection}>
-          <PDF.Image src="/images/logos/logo.jpg" style={styles.logo} />
+          <PDF.Image src="/images/logos/logo-icon.png" style={styles.logo} />
           <PDF.View style={styles.headerTextContainer}>
             <PDF.Text style={styles.subtitle}>VOCÊ IMAGINA, NÓS FAZEMOS ACONTECER.</PDF.Text>
             <PDF.Text style={styles.title}>Relatório de Serviços</PDF.Text>
