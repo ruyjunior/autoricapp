@@ -7,7 +7,7 @@ import {fetchProjects} from "@/app/lib/projects/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: 'ENTREGAS | AUTORIC',
+  title: 'Entregas',
   description: 'AUTORIC ENTREGAS',
 };
 

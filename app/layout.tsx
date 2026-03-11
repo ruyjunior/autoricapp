@@ -2,6 +2,8 @@ import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
 import { SessionProvider } from "next-auth/react";
 import { Metadata } from 'next';
+import Script from 'next/script';
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: {
@@ -31,11 +33,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WY7EJ45YSF"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WY7EJ45YSF');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} antialiased`}>
         <SessionProvider>
           {children}
         </SessionProvider>
+        <Analytics /> {/* Vercel Analytics */}
       </body>
     </html>
   );
