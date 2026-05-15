@@ -9,11 +9,6 @@ import Deliveries from "../ui/site/deliveries/deliveries";
 import Techs from "../ui/site/sections/techs";
 import Evaluation from "../ui/site/sections/evaluation";
 
-export const metadata: Metadata = {
-  title: 'HOME',
-  description: 'Página inicial do site AUTORIC AUTOMAÇÃO',
-};
-
 export default async function Page() {
   return (
     <div className="bg-gray text-gray-900">

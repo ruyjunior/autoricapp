@@ -8,13 +8,24 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: {
     template: '%s | AUTORIC',
-    default: 'AUTORIC AUTOMAÇÃO',
+    default: 'AUTORIC AUTOMAÇÃO&SISTEMAS',
   },
-  description: 'AUTORIC, A SOLUÇÃO EM AUTOMAÇÃO PARA O SEU NEGÓCIO E A SUA VIDA',
+  description: 'Soluções em automação industrial, comercial e residencial com tecnologia, inovação e confiança.',
   metadataBase: new URL('https://www.autoric.com.br'),
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://www.autoric.com.br',
+    title: 'AUTORIC AUTOMAÇÃO&SISTEMAS',
+    description: 'Soluções em automação industrial, comercial e residencial com tecnologia, inovação e confiança.',
+    siteName: 'AUTORIC',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AUTORIC AUTOMAÇÃO&SISTEMAS',
+    description: 'Soluções em automação industrial, comercial e residencial com tecnologia, inovação e confiança.',
+    images: [{ url: 'https://www.autoric.com.br/og-image.jpg' },
+    ],
   },
   robots: {
     follow: true,
