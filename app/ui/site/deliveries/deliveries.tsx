@@ -50,7 +50,7 @@ const Deliveries: React.FC = () => {
                     >
                         <div className="relative mb-4">
                             <Image
-                                src="/images/icons/automation_2.png"
+                                src="/images/icons/automation_2.jpg"
                                 width={400}
                                 height={400}
                                 alt="Ícone de automação industrial"
@@ -74,7 +74,7 @@ const Deliveries: React.FC = () => {
                     >
                         <div className="relative mb-4">
                             <Image
-                                src="/images/icons/dev_2.png"
+                                src="/images/icons/dev_2.webp"
                                 width={400}
                                 height={400}
                                 alt="Ícone de desenvolvimento de sistemas"
