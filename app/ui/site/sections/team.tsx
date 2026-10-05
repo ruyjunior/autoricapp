@@ -36,11 +36,11 @@ const Team: React.FC = () => {
             <h3 className="text-xl font-semibold text-blue-800">{member.name}</h3>
             <p className="mt-2 text-gray-600">{member.role}</p>
             <div className="flex gap-4 mt-4">
-              <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 transition">
-                <FaLinkedin size={28} />
+              <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${member.name}`} className="text-blue-600 hover:text-blue-800 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
+                <FaLinkedin size={28} aria-hidden="true" />
               </Link>
-              <Link href={member.github} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-black transition">
-                <FaGithub size={28} />
+              <Link href={member.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub de ${member.name}`} className="text-gray-700 hover:text-black transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700">
+                <FaGithub size={28} aria-hidden="true" />
               </Link>
             </div>
           </div>

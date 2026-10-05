@@ -6,9 +6,9 @@ import { FaGoogle } from 'react-icons/fa';
 const Evaluation: React.FC = () => {
     return (
         <section id="evaluation" className="py-20 bg-gradient-to-b from-white to-blue-50 text-center">
-            <h1 className="text-4xl font-extrabold mb-4 text-blue-900 tracking-tight drop-shadow">
+            <h2 className="text-4xl font-extrabold mb-4 text-blue-900 tracking-tight drop-shadow">
                 Avaliação
-            </h1>
+            </h2>
             <h2 className="text-lg font-medium mb-10 text-gray-700">
                 Seu feedback é fundamental para continuarmos evoluindo!
             </h2>

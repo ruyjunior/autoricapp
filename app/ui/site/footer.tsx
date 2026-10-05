@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FaInstagram, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -22,6 +22,12 @@ const Footer = () => {
             </a>
             <a href="https://wa.me/5551992274105" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FaWhatsapp size={22} className="hover:text-green-200 transition" />
+            </a>
+            <a href="https://www.linkedin.com/company/autoricautomação" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <FaLinkedin size={22} className="hover:text-blue-200 transition" />
+            </a>
+            <a href="https://github.com/Autoric-Automation-Systems" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <FaGithub size={22} className="hover:text-gray-200 transition" />
             </a>
           </div>
         </div>

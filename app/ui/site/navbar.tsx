@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-blue-100/90 shadow-lg backdrop-blur' : 'bg-transparent'}`}>
+      <nav aria-label="Navegação principal" className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-blue-100/90 shadow-lg backdrop-blur' : 'bg-transparent'}`}>
         <div className="container mx-auto flex justify-between items-center align-middle">
           <Link href={"/"} className="flex items-center gap-2">
             <Image
@@ -46,14 +46,21 @@ const Navbar = () => {
           </div>
 
           {/* Botão Menu Mobile */}
-          <button onClick={toggleMenu} className="md:hidden text-blue-600 focus:outline-none rounded p-6 hover:bg-blue-100 transition">
-            {isOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+          <button
+            type="button"
+            onClick={toggleMenu}
+            aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            className="md:hidden text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 rounded p-6 hover:bg-blue-100 transition"
+          >
+            {isOpen ? <FaTimes size={28} aria-hidden="true" /> : <FaBars size={28} aria-hidden="true" />}
           </button>
         </div>
 
         {/* Menu Mobile */}
         {isOpen && (
-          <div className="md:hidden bg-blue-600/95 text-white text-lg font-semibold py-8 flex flex-col items-center space-y-6 shadow-lg transition-all duration-300">
+          <div id="mobile-navigation" className="md:hidden bg-blue-600/95 text-white text-lg font-semibold py-8 flex flex-col items-center space-y-6 shadow-lg transition-all duration-300">
             <Link href="/#services" onClick={toggleMenu} className="hover:text-blue-300 transition">Serviços</Link>
             <Link href="/#techs" onClick={toggleMenu} className="hover:text-blue-300 transition">Tecnologias</Link>
             <Link href="/#clients" onClick={toggleMenu} className="hover:text-blue-300 transition">Clientes</Link>

@@ -1,6 +1,6 @@
 import '@/app/ui/global.css';
+import 'leaflet/dist/leaflet.css';
 import { inter } from '@/app/ui/fonts';
-import { SessionProvider } from "next-auth/react";
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/next";
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     title: 'AUTORIC AUTOMAÇÃO&SISTEMAS',
     description: 'Soluções em automação industrial, comercial e residencial com tecnologia, inovação e confiança.',
     siteName: 'AUTORIC',
+    images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AUTORIC AUTOMAÇÃO&SISTEMAS',
     description: 'Soluções em automação industrial, comercial e residencial com tecnologia, inovação e confiança.',
-    images: [{ url: 'https://www.autoric.com.br/og-image.jpg' },
-    ],
+    images: ['/opengraph-image.png'],
   },
   robots: {
     follow: true,
@@ -64,9 +64,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.className} antialiased`}>
-        <SessionProvider>
-          {children}
-        </SessionProvider>
+        {children}
         <Analytics /> {/* Vercel Analytics */}
       </body>
     </html>

@@ -1,4 +1,3 @@
-import { SessionProvider } from "next-auth/react";
 import WhatsappButton from "@/app/ui/site/WhatsappButton";
 import TopButton from "@/app/ui/site/TopButton";
 import Footer from "@/app/ui/site/footer";
@@ -11,15 +10,13 @@ export default function RootLayout({
 }) {
   return (
     <div>
-      <SessionProvider>
-        <Navbar />
-        <div>
-          {children}
-        </div>
-        <Footer />
-        <WhatsappButton />
-        <TopButton />
-      </SessionProvider>
+      <Navbar />
+      <div>
+        {children}
+      </div>
+      <Footer />
+      <WhatsappButton />
+      <TopButton />
     </div>
   );
 }

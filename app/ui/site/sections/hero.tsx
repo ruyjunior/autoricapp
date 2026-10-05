@@ -6,7 +6,7 @@ const Hero = () => {
       <section className="relative h-[40vh] md:h-[80vh] top-20 md:top-0 flex items-center justify-center text-center overflow-hidden">
         <Image
           src="/images/banners/banner.png"
-          alt="Background"
+          alt=""
           width={1920}
           height={1080}
           className="absolute inset-0 w-full h-full object-cover opacity-80"

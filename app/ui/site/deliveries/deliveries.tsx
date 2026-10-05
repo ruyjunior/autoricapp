@@ -36,6 +36,10 @@ const Deliveries: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-blue-900 tracking-tight drop-shadow">
                 Projetos e Entregas
             </h2>
+            <h3 className="">
+                Clique para saber mais!
+            </h3>
+
             <div className="flex justify-center flex-wrap gap-10">
                 {/* Cartão Automação */}
                 <div className="flex flex-col items-center justify-center bg-white px-8 py-8 rounded-2xl shadow-xl border border-blue-100 max-w-xs hover:scale-105 transition-transform duration-200">
@@ -46,10 +50,10 @@ const Deliveries: React.FC = () => {
                     >
                         <div className="relative mb-4">
                             <Image
-                                src="/images/icons/automation.png"
-                                width={120}
-                                height={120}
-                                alt="automation"
+                                src="/images/icons/automation_2.png"
+                                width={400}
+                                height={400}
+                                alt="Ícone de automação industrial"
                                 className="rounded-full border-4 border-blue-200 shadow object-cover group-hover:shadow-lg transition"
                             />
                             <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow group-hover:bg-blue-800 transition">
@@ -70,10 +74,10 @@ const Deliveries: React.FC = () => {
                     >
                         <div className="relative mb-4">
                             <Image
-                                src="/images/icons/dev.png"
-                                width={120}
-                                height={120}
-                                alt="developed"
+                                src="/images/icons/dev_2.png"
+                                width={400}
+                                height={400}
+                                alt="Ícone de desenvolvimento de sistemas"
                                 className="rounded-full border-4 border-blue-200 shadow object-cover group-hover:shadow-lg transition"
                             />
                             <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow group-hover:bg-blue-800 transition">
