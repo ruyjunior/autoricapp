@@ -76,14 +76,14 @@ export default function Devs({ repositories }: { repositories: Repository[] | nu
                             key={repository.id}
                             className="flex min-h-[280px] basis-[85%] snap-start flex-col items-center rounded-lg border border-blue-100 bg-white p-8 text-center shadow-xl transition-transform duration-200 hover:-translate-y-1 sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
                         >
-                            <div className="mb-4 flex size-24 shrink-0 items-center justify-center overflow-hidden p-2">
+                            <div className="mb-4 flex h-24 w-full shrink-0 items-center justify-center">
                                 {repository.icon_url ? (
                                     <Image
                                         src={repository.icon_url}
                                         alt={`Ícone do projeto ${repository.name}`}
-                                        width={96}
-                                        height={96}
-                                        className="h-full w-full object-contain"
+                                        width={160}
+                                        height={80}
+                                        className="h-20 w-auto max-w-full object-contain"
                                     />
                                 ) : (
                                     <FaGithub size={40} className="text-gray-500" aria-hidden="true" />

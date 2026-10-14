@@ -11,9 +11,15 @@ type PublicRepository = {
   homepage: string | null;
   language: string | null;
   stargazers_count: number;
+  default_branch: string;
   icon_url: string | null;
 };
 
+type RepositoryTree = {
+  tree?: { path: string }[];
+};
+
+// Overrides curados: quando presentes, evitam a busca automática de ícone no repositório.
 const repositoryIcons: Record<string, string> = {
   'sp-clp': 'https://raw.githubusercontent.com/Autoric-Automation-Systems/sp-clp/main/app/static/assets/icons/logo.png',
   'sp-th': 'https://raw.githubusercontent.com/Autoric-Automation-Systems/smartplantapp/main/public/images/logo/logo_SP-TH.png',
@@ -22,6 +28,7 @@ const repositoryIcons: Record<string, string> = {
   'sp-is': 'https://raw.githubusercontent.com/Autoric-Automation-Systems/sp-is/master/assets/logo.png',
   'sp-ps': 'https://raw.githubusercontent.com/Autoric-Automation-Systems/smartplantapp/main/public/images/logo/logo_SP-PS.png',
   myplayapp: 'https://raw.githubusercontent.com/Autoric-Automation-Systems/myplayapp/main/public/icon.png',
+  store77: 'https://raw.githubusercontent.com/Autoric-Automation-Systems/store77/main/public/logo.png',
 };
 
 const curatedSummaries: Record<string, string> = {
@@ -32,6 +39,67 @@ const curatedSummaries: Record<string, string> = {
   'sp-ps': 'Módulo para monitoramento de estados de produção em linhas industriais.',
   myplayapp: 'Plataforma interativa desenvolvida com Next.js e React.',
 };
+
+// Formato de imagem usado pelo otimizador do Next: SVG remoto exigiria habilitar
+// `dangerouslyAllowSVG`, então apenas formatos raster entram na busca automática.
+const ICON_FILE_PATTERN = /(^|\/)(logo|icon)[^/]*\.(png|webp|jpe?g)$/i;
+const PREFERRED_ICON_FILES = [
+  'logo.png',
+  'logo.webp',
+  'logo.jpg',
+  'logo.jpeg',
+  'icon.png',
+  'icon.webp',
+  'icon.jpg',
+  'icon.jpeg',
+];
+
+function selectIconPath(paths: string[]): string | null {
+  const candidates = paths.filter((path) => ICON_FILE_PATTERN.test(path));
+  if (candidates.length === 0) return null;
+
+  const rank = (path: string) => {
+    const filename = path.split('/').pop()?.toLowerCase() ?? '';
+    const preferred = PREFERRED_ICON_FILES.indexOf(filename);
+    return preferred === -1 ? PREFERRED_ICON_FILES.length : preferred;
+  };
+
+  return candidates.sort((a, b) =>
+    rank(a) - rank(b) ||
+    Number(!a.startsWith('public/')) - Number(!b.startsWith('public/')) ||
+    a.split('/').length - b.split('/').length ||
+    a.localeCompare(b),
+  )[0];
+}
+
+function buildRawIconUrl(repositoryName: string, branch: string, path: string): string {
+  const encodedPath = path.split('/').map(encodeURIComponent).join('/');
+  return `https://raw.githubusercontent.com/Autoric-Automation-Systems/${encodeURIComponent(repositoryName)}/${encodeURIComponent(branch)}/${encodedPath}`;
+}
+
+async function fetchRepositoryIcon(repository: PublicRepository): Promise<string | null> {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/Autoric-Automation-Systems/${encodeURIComponent(repository.name)}/git/trees/${encodeURIComponent(repository.default_branch)}?recursive=1`,
+      {
+        headers: { Accept: 'application/vnd.github+json' },
+        next: { revalidate: 3600 },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`GitHub API returned ${response.status}`);
+    }
+
+    const tree = await response.json() as RepositoryTree;
+    const iconPath = selectIconPath((tree.tree ?? []).map((entry) => entry.path));
+
+    return iconPath ? buildRawIconUrl(repository.name, repository.default_branch, iconPath) : null;
+  } catch (error) {
+    console.error(`Failed to resolve icon for ${repository.name}:`, error);
+    return null;
+  }
+}
 
 function extractReadmeSummary(markdown: string): string | null {
   const paragraphs = markdown
@@ -100,7 +168,7 @@ async function fetchPublicRepositories(): Promise<PublicRepository[] | null> {
 
     return await Promise.all(repositories.map(async (repository) => ({
       ...repository,
-      icon_url: repositoryIcons[repository.name] || null,
+      icon_url: repositoryIcons[repository.name] ?? await fetchRepositoryIcon(repository),
       description: repository.description || curatedSummaries[repository.name] || await fetchReadmeSummary(repository.name),
     })));
   } catch (error) {
